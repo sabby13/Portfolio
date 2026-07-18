@@ -1,0 +1,41 @@
+#about{
+
+    position:relative;
+
+    background:#F8F5EF;
+
+    min-height:100vh;
+}
+
+#paper-tear{
+
+    position:absolute;
+
+    top:-180px;      /* adjust between -150 and -250 */
+
+    left:0;
+
+    width:100%;
+
+    z-index:5;
+
+    pointer-events:none;
+}
+
+
+.about-content{
+
+    width:min(1100px,90%);
+
+    margin:auto;
+
+    padding:100px 0;
+}
+
+
+.about-content h2{
+
+    font-size:4rem;
+
+    margin-bottom:30px;
+}
