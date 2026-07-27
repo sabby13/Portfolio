@@ -10,6 +10,28 @@
 }
 
 
+/* soft darkening at the base so the glowing seam reads */
+#hero::after{
+
+    content:"";
+
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:26vh;
+
+    background:linear-gradient(to bottom,
+        transparent,
+        rgba(18,22,38,.55));
+
+    pointer-events:none;
+
+    z-index:3;
+}
+
+
 /* Background */
 
 #background{
