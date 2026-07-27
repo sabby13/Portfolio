@@ -42,6 +42,24 @@
     justify-content:flex-start;
 }
 
+/* two-line title (script cap line + a pixel word below) */
+.section-title--stack{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:.05em;
+    width:fit-content;
+    margin-inline:auto;            /* keep the block centred */
+}
+
+.section-title__line{
+    display:flex;
+    align-items:center;
+}
+
+.section-title__line2{
+    padding-top:0;                 /* already on its own line */
+}
+
 .section-title__cap{
     font-family:var(--font-script);
     font-size:clamp(5.5rem, 13vw, 9.5rem);
