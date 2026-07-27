@@ -8,7 +8,7 @@
 
 .skills-grid{
     display:grid;
-    grid-template-columns:1fr minmax(260px, 380px);
+    grid-template-columns:1fr minmax(300px, 440px);
     align-items:center;
     gap:clamp(32px, 5vw, 72px);
 }
@@ -46,7 +46,7 @@
 .skills-orbit{
     justify-self:center;
     width:100%;
-    max-width:380px;
+    max-width:440px;         /* full orbit, uncropped */
 }
 
 .orbit{
@@ -87,11 +87,6 @@
 .orbit__ring--mid  { animation-duration:34s; animation-direction:reverse; }
 .orbit__ring--inner{ animation-duration:24s; }
 
-/* pause the whole orbit on hover */
-.skills-orbit:hover .orbit__ring{
-    animation-play-state:paused;
-}
-
 @keyframes orbit-spin{
     to{ transform:rotate(360deg); }
 }
@@ -108,7 +103,7 @@
     }
 
     .skills-orbit{
-        max-width:300px;
+        max-width:340px;
     }
 }
 
