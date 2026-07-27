@@ -1,7 +1,40 @@
 @import url("hero.css");
 @import url("navigation.css");
+@import url("sections.css");
 @import url("about.css");
-@import url("animations.css");
+@import url("projects.css");
+@import url("animation.css");
+
+/* =====================================================
+   DESIGN TOKENS
+   Editorial · cream paper · deep navy · script + pixel
+   ===================================================== */
+
+:root{
+
+    /* Paper / surfaces */
+    --paper:        #F5F1E8;   /* warm editorial cream       */
+    --paper-shade:  #ECE6D8;   /* subtle depth on cream      */
+
+    /* Ink / accents */
+    --navy:         #16255C;   /* deep navy — headings, ink  */
+    --navy-soft:    #3F5B96;   /* italic taglines, captions  */
+    --ink:          #1B1B1B;   /* body copy on paper         */
+    --line:         rgba(22,37,92,.16);
+
+    /* Type families */
+    --font-body:    "Poppins", Arial, Helvetica, sans-serif;
+    --font-script:  "Pinyon Script", cursive;      /* ornate drop-cap */
+    --font-pixel:   "Pixelify Sans", monospace;     /* display title   */
+
+    /* Rhythm */
+    --wrap:         min(1100px, 90%);
+    --section-pad:  clamp(64px, 10vw, 130px);
+    --radius:       24px;
+
+    /* Motion */
+    --ease:         cubic-bezier(.22,.61,.36,1);
+}
 
 *{
     margin:0;
@@ -15,6 +48,18 @@ html{
 
 body{
     overflow-x:hidden;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:var(--font-body);
+    color:var(--ink);
     background:black;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+a{
+    color:inherit;
 }

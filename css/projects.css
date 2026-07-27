@@ -1,0 +1,84 @@
+/* =====================================================
+   PROJECTS
+   Product-focused storytelling: a big centred title,
+   an italic navy one-liner, and a framed screenshot
+   for each build.
+   ===================================================== */
+
+.projects{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:clamp(80px, 12vw, 150px);
+}
+
+.project{
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* running number — quiet, editorial */
+.project__index{
+    font-family:var(--font-body);
+    font-weight:300;
+    font-size:clamp(1.1rem, 2vw, 1.4rem);
+    letter-spacing:.35em;
+    color:var(--navy-soft);
+    margin-bottom:.6em;
+}
+
+.project__title{
+    font-weight:400;
+    font-size:clamp(2.4rem, 6vw, 4.2rem);
+    line-height:1.05;
+    color:var(--ink);
+    letter-spacing:-.01em;
+}
+
+.project__title .arrow{
+    font-size:.5em;
+    font-weight:700;
+    color:var(--navy);
+}
+
+.project__desc{
+    margin-top:1rem;
+    font-size:clamp(1.05rem, 2.4vw, 1.5rem);
+    max-width:42ch;
+}
+
+/* framed screenshot */
+.project__shot{
+    margin-top:clamp(28px, 4vw, 44px);
+    width:min(680px, 100%);
+    aspect-ratio:16 / 10;
+    border-radius:8px;
+    box-shadow:0 26px 55px rgba(22,37,92,.16);
+    overflow:hidden;
+    background:var(--paper-shade);
+}
+
+.project__shot img,
+.project__shot .placeholder{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.project__stack{
+    margin-top:1.25rem;
+    font-style:italic;
+    font-weight:500;
+    color:var(--navy-soft);
+    font-size:clamp(1rem, 2vw, 1.3rem);
+    letter-spacing:.01em;
+}
+
+
+@media (max-width:600px){
+    .project__shot{
+        aspect-ratio:4 / 3;
+    }
+}

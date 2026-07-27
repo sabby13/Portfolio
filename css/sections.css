@@ -1,0 +1,119 @@
+/* =====================================================
+   SHARED SECTION SCAFFOLD
+   Every content section after the hero sits on paper
+   and shares the script + pixel display title.
+   ===================================================== */
+
+.section{
+    position:relative;
+    background:var(--paper);
+    padding-block:var(--section-pad);
+}
+
+.section__inner{
+    width:var(--wrap);
+    margin-inline:auto;
+}
+
+
+/* -----------------------------------------------------
+   Section title  —  ornate script cap + pixel remainder
+   Markup:
+     <h2 class="section-title">
+       <span class="section-title__cap">A</span>
+       <span class="section-title__rest">bout&nbsp;Me</span>
+     </h2>
+   The cap is set large and overlaps the pixel word,
+   mirroring the drop-cap treatment in the design.
+   ----------------------------------------------------- */
+
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0;
+    color:var(--navy);
+    line-height:.9;
+    text-transform:uppercase;      /* pixel word reads as caps */
+    margin-bottom:clamp(40px, 6vw, 72px);
+}
+
+.section-title--left{
+    justify-content:flex-start;
+}
+
+.section-title__cap{
+    font-family:var(--font-script);
+    font-size:clamp(5.5rem, 13vw, 9.5rem);
+    text-transform:none;           /* keep the elegant capital */
+    line-height:1;
+    /* nudge the script cap so it kisses the pixel word */
+    margin-right:clamp(-.28em, -3vw, -.16em);
+    transform:translateY(.02em);
+    text-shadow:0 6px 18px rgba(22,37,92,.14);
+}
+
+.section-title__rest{
+    font-family:var(--font-pixel);
+    font-weight:600;
+    font-size:clamp(2.4rem, 6.2vw, 4.6rem);
+    letter-spacing:.04em;
+    padding-top:.18em;             /* optical baseline align */
+}
+
+
+/* -----------------------------------------------------
+   Small helpers reused across sections
+   ----------------------------------------------------- */
+
+/* italic navy sub-line used under headings / titles */
+.lede{
+    font-style:italic;
+    color:var(--navy-soft);
+    font-weight:400;
+}
+
+/* external-link arrow that follows a title */
+.arrow-link{
+    display:inline-flex;
+    align-items:center;
+    gap:.35em;
+    text-decoration:none;
+    color:inherit;
+}
+
+.arrow-link .arrow{
+    display:inline-block;
+    color:var(--navy);
+    transition:transform .3s var(--ease);
+}
+
+.arrow-link:hover .arrow{
+    transform:translate(3px,-3px);
+}
+
+
+/* -----------------------------------------------------
+   Graceful image placeholder
+   Any <img> that fails to load (asset not dropped in
+   yet) reveals a tidy labelled slot instead of a broken
+   icon — keeps the layout honest during buildout.
+   ----------------------------------------------------- */
+
+.placeholder{
+    position:relative;
+    background:var(--paper-shade);
+    border:1px dashed var(--line);
+    display:grid;
+    place-items:center;
+    color:var(--navy-soft);
+    font-size:.8rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    overflow:hidden;
+}
+
+.placeholder::after{
+    content:attr(data-label);
+    opacity:.7;
+}

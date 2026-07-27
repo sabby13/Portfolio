@@ -4,7 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sahib Preet Singh</title>
+    <meta name="description" content="Sahib Preet Singh — Analyst, Developer & Designer building products where AI, data, design and human experience intersect.">
+    <title>Sahib Preet Singh — Analyst · Developer · Designer</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Pixelify+Sans:wght@400..700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -60,13 +66,13 @@
                     <span class="number">IV</span>
                 </a>
 
-                <a href="#socials" class="menu-item">
+                <a href="#research" class="menu-item">
                     <span class="title">Research</span>
                     <span class="dots"></span>
                     <span class="number">V</span>
                 </a>
 
-                <a href="#research" class="menu-item">
+                <a href="#socials" class="menu-item">
                     <span class="title">Socials</span>
                     <span class="dots"></span>
                     <span class="number">VI</span>
@@ -84,19 +90,45 @@
 
     <!-- ================= ABOUT ================= -->
 
-    <section id="about">
+    <section id="about" class="section">
 
         <img
             src="assets/paper.png"
             id="paper-tear"
-            alt="Paper Divider">
+            alt=""
+            aria-hidden="true">
 
-        <div class="about-content">
+        <div class="section__inner about-content">
 
-            <h2>ABOUT ME</h2>
+            <h2 class="section-title" data-reveal>
+                <span class="section-title__cap">A</span>
+                <span class="section-title__rest">bout&nbsp;Me</span>
+            </h2>
 
-            <p>
-                Temporary About Section
+            <div class="about-grid">
+
+                <figure class="polaroid" data-reveal>
+                    <img src="assets/me.jpg" alt="Sahib Preet Singh"
+                         onerror="this.remove()">
+                    <span class="polaroid__slot placeholder"
+                          data-label="assets/me.jpg"></span>
+                </figure>
+
+                <div class="about-copy" data-reveal>
+
+                    <h3>I'm Sahib</h3>
+
+                    <p>
+                        Building things I wish existed &mdash; and they
+                        often end up being what people wanted too.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <p class="about-tagline lede" data-reveal>
+                Products where AI, data, design, and human experience intersect.
             </p>
 
         </div>
@@ -109,9 +141,79 @@
 
     <!-- ================= PROJECTS ================= -->
 
-    <section id="projects">
+    <section id="projects" class="section">
 
-        <h2>PROJECTS</h2>
+        <div class="section__inner">
+
+            <h2 class="section-title" data-reveal>
+                <span class="section-title__cap">P</span>
+                <span class="section-title__rest">rojects</span>
+            </h2>
+
+            <ol class="projects">
+
+                <!-- 01 -->
+                <li class="project" data-reveal>
+                    <p class="project__index">01</p>
+                    <h3 class="project__title">
+                        <a href="#" class="arrow-link" target="_blank" rel="noopener">
+                            GlassButterfly
+                            <span class="arrow" aria-hidden="true">&#8599;</span>
+                        </a>
+                    </h3>
+                    <p class="project__desc lede">
+                        A screensaver that runs natively on your computer.
+                    </p>
+                    <figure class="project__shot">
+                        <img src="assets/projects/glassbutterfly.png" alt="GlassButterfly screenshot"
+                             onerror="this.remove()">
+                        <span class="placeholder" data-label="assets/projects/glassbutterfly.png"></span>
+                    </figure>
+                </li>
+
+                <!-- 02 -->
+                <li class="project" data-reveal>
+                    <p class="project__index">02</p>
+                    <h3 class="project__title">
+                        <a href="#" class="arrow-link" target="_blank" rel="noopener">
+                            Walkman Manager
+                            <span class="arrow" aria-hidden="true">&#8599;</span>
+                        </a>
+                    </h3>
+                    <p class="project__desc lede">
+                        A music manager for mp3 players.
+                    </p>
+                    <figure class="project__shot">
+                        <img src="assets/projects/walkman-manager.png" alt="Walkman Manager screenshot"
+                             onerror="this.remove()">
+                        <span class="placeholder" data-label="assets/projects/walkman-manager.png"></span>
+                    </figure>
+                    <p class="project__stack">Electron &middot; TypeScript &middot; React</p>
+                </li>
+
+                <!-- 03 -->
+                <li class="project" data-reveal>
+                    <p class="project__index">03</p>
+                    <h3 class="project__title">
+                        <a href="#" class="arrow-link" target="_blank" rel="noopener">
+                            helloSienna
+                            <span class="arrow" aria-hidden="true">&#8599;</span>
+                        </a>
+                    </h3>
+                    <p class="project__desc lede">
+                        An agentic AI that runs your desktop based on the identity
+                        of a friend you give it.
+                    </p>
+                    <figure class="project__shot">
+                        <img src="assets/projects/hellosienna.png" alt="helloSienna screenshot"
+                             onerror="this.remove()">
+                        <span class="placeholder" data-label="assets/projects/hellosienna.png"></span>
+                    </figure>
+                </li>
+
+            </ol>
+
+        </div>
 
     </section>
 
@@ -159,6 +261,7 @@
 
 
     <script src="js/main.js"></script>
+    <script src="js/scroll.js"></script>
 
 </body>
 

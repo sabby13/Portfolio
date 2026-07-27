@@ -1,15 +1,70 @@
-/*
+/* =====================================================
+   ANIMATION
+   Hero entrance + scroll-reveal for content sections.
+   All motion is opt-out via prefers-reduced-motion.
+   ===================================================== */
 
-Future:
 
-Hero entrance
+/* ---- Hero entrance ---------------------------------- */
 
-Butterfly
+.hero-card{
+    opacity:0;
+    animation:hero-rise 1s var(--ease) .15s forwards;
+}
 
-Paper transition
+@keyframes hero-rise{
+    from{ opacity:0; transform:translate(-50%,-46%); }
+    to  { opacity:1; transform:translate(-50%,-50%); }
+}
 
-Fade-ins
+/* stagger the nav rows in after the card settles */
+.menu-item{
+    opacity:0;
+    animation:fade-in .6s var(--ease) forwards;
+}
+.menu-item:nth-child(1){ animation-delay:.55s; }
+.menu-item:nth-child(2){ animation-delay:.65s; }
+.menu-item:nth-child(3){ animation-delay:.75s; }
+.menu-item:nth-child(4){ animation-delay:.85s; }
+.menu-item:nth-child(5){ animation-delay:.95s; }
+.menu-item:nth-child(6){ animation-delay:1.05s; }
 
-Scroll animations
+@keyframes fade-in{
+    from{ opacity:0; transform:translateY(8px); }
+    to  { opacity:1; transform:translateY(0); }
+}
 
-*/
+
+/* ---- Scroll reveal ---------------------------------- */
+
+[data-reveal]{
+    opacity:0;
+    transform:translateY(28px);
+    transition:
+        opacity   .7s var(--ease),
+        transform .7s var(--ease);
+    will-change:opacity, transform;
+}
+
+[data-reveal].is-visible{
+    opacity:1;
+    transform:none;
+}
+
+
+/* ---- Respect reduced-motion ------------------------- */
+
+@media (prefers-reduced-motion:reduce){
+
+    .hero-card,
+    .menu-item{
+        opacity:1;
+        animation:none;
+    }
+
+    [data-reveal]{
+        opacity:1;
+        transform:none;
+        transition:none;
+    }
+}
