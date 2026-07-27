@@ -1,26 +1,10 @@
 /* =====================================================
    ABOUT
-   Torn-paper transition out of the hero, then a
-   polaroid + intro, closing on the navy tagline.
+   Polaroid + intro, closing on the navy tagline.
    ===================================================== */
-
-#about{
-    overflow:hidden;               /* contain the paper tear */
-}
-
-/* Torn paper divider bleeding up into the hero */
-#paper-tear{
-    position:absolute;
-    top:-180px;                    /* adjust between -150 and -250 */
-    left:0;
-    width:100%;
-    z-index:5;
-    pointer-events:none;
-}
 
 .about-content{
     position:relative;
-    z-index:6;
 }
 
 
