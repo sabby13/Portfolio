@@ -41,6 +41,16 @@
     animation:tear-pulse 4.5s ease-in-out infinite;
 }
 
+/* rising ember particles */
+.tear-sparks{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:230%;              /* reaches up into the hero so sparks can rise */
+    pointer-events:none;
+}
+
 @keyframes tear-pulse{
     0%, 100%{ opacity:.5; }
     50%     { opacity:1; }
