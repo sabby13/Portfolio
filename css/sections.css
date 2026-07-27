@@ -58,6 +58,9 @@
 
 .section-title__line2{
     padding-top:0;                 /* already on its own line */
+    /* nudge the lower word in so it nests under the script cap's
+       body rather than its left-hand flourish */
+    margin-left:clamp(1rem, 5vw, 2.4rem);
 }
 
 .section-title__cap{
