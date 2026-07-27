@@ -298,21 +298,41 @@
 
                 </div>
 
-                <!-- continuously scrolling tech column -->
-                <div class="skills-marquee" aria-hidden="true" data-reveal>
-                    <div class="skills-marquee__track">
-                        <span>python</span><span>typescript</span><span>node.js</span>
-                        <span>java</span><span>c++</span><span>aws</span>
-                        <span>R</span><span>Power BI</span><span>Excel</span>
-                        <span>tableau</span><span>ollama</span><span>n8n</span>
-                        <span>docker</span><span>react</span><span>electron</span>
-                        <!-- duplicate for a seamless loop -->
-                        <span>python</span><span>typescript</span><span>node.js</span>
-                        <span>java</span><span>c++</span><span>aws</span>
-                        <span>R</span><span>Power BI</span><span>Excel</span>
-                        <span>tableau</span><span>ollama</span><span>n8n</span>
-                        <span>docker</span><span>react</span><span>electron</span>
-                    </div>
+                <!-- three concentric rings of tech, each revolving -->
+                <div class="skills-orbit" aria-hidden="true" data-reveal>
+                    <svg class="orbit" viewBox="0 0 600 600" role="img"
+                         xmlns="http://www.w3.org/2000/svg">
+
+                        <defs>
+                            <!-- circular baselines: start at leftmost point, run clockwise -->
+                            <path id="orbit-outer" fill="none"
+                                  d="M300,300 m-250,0 a250,250 0 1,1 500,0 a250,250 0 1,1 -500,0"/>
+                            <path id="orbit-mid" fill="none"
+                                  d="M300,300 m-172,0 a172,172 0 1,1 344,0 a172,172 0 1,1 -344,0"/>
+                            <path id="orbit-inner" fill="none"
+                                  d="M300,300 m-100,0 a100,100 0 1,1 200,0 a100,100 0 1,1 -200,0"/>
+                        </defs>
+
+                        <!-- faint guide circles -->
+                        <g class="orbit__guides">
+                            <circle cx="300" cy="300" r="250"/>
+                            <circle cx="300" cy="300" r="172"/>
+                            <circle cx="300" cy="300" r="100"/>
+                        </g>
+
+                        <g class="orbit__ring orbit__ring--outer">
+                            <text><textPath href="#orbit-outer" startOffset="0">Python&#160;&#183;&#160;TypeScript&#160;&#183;&#160;React&#160;&#183;&#160;Electron&#160;&#183;&#160;Node.js&#160;&#183;&#160;JavaScript&#160;&#183;&#160;Figma&#160;&#183;&#160;SQLite&#160;&#183;&#160;Excel&#160;&#183;&#160;Power&#160;BI&#160;&#183;&#160;</textPath></text>
+                        </g>
+
+                        <g class="orbit__ring orbit__ring--mid">
+                            <text><textPath href="#orbit-mid" startOffset="0">Ollama&#160;&#183;&#160;n8n&#160;&#183;&#160;Docker&#160;&#183;&#160;Pandas&#160;&#183;&#160;scikit-learn&#160;&#183;&#160;OpenCV&#160;&#183;&#160;YOLO&#160;&#183;&#160;</textPath></text>
+                        </g>
+
+                        <g class="orbit__ring orbit__ring--inner">
+                            <text><textPath href="#orbit-inner" startOffset="0">Git&#160;&#183;&#160;GitHub&#160;&#183;&#160;Tailwind&#160;&#183;&#160;FFmpeg&#160;&#183;&#160;CAD&#160;&#183;&#160;CSS3&#160;&#183;&#160;</textPath></text>
+                        </g>
+
+                    </svg>
                 </div>
 
             </div>

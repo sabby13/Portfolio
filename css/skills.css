@@ -1,15 +1,16 @@
 /* =====================================================
    SKILLS
    Left column: named capability groups.
-   Right column: a slow, seamless tech marquee — the
-   "this will rotate" motion from the design, made calm.
+   Right column: three concentric rings of tech that
+   revolve at different speeds — the "this will rotate"
+   motion from the design, realised.
    ===================================================== */
 
 .skills-grid{
     display:grid;
-    grid-template-columns:1fr minmax(180px, 260px);
-    align-items:start;
-    gap:clamp(32px, 6vw, 80px);
+    grid-template-columns:1fr minmax(260px, 380px);
+    align-items:center;
+    gap:clamp(32px, 5vw, 72px);
 }
 
 
@@ -40,44 +41,59 @@
 }
 
 
-/* ---- scrolling tech column ---- */
+/* ---- revolving tech rings ---- */
 
-.skills-marquee{
-    position:relative;
-    height:clamp(340px, 46vh, 460px);
-    overflow:hidden;
-    /* fade top & bottom so items dissolve in/out */
-    -webkit-mask-image:linear-gradient(
-        to bottom, transparent, #000 16%, #000 84%, transparent);
-            mask-image:linear-gradient(
-        to bottom, transparent, #000 16%, #000 84%, transparent);
+.skills-orbit{
+    justify-self:center;
+    width:100%;
+    max-width:380px;
 }
 
-.skills-marquee__track{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-end;
-    gap:1.1em;
-    text-align:right;
-    animation:skills-scroll 26s linear infinite;
+.orbit{
+    display:block;
+    width:100%;
+    height:auto;
+    overflow:visible;
 }
 
-.skills-marquee__track span{
-    font-family:var(--font-pixel);
+/* faint guide circles under the text */
+.orbit__guides circle{
+    fill:none;
+    stroke:var(--line);
+    stroke-width:1;
+}
+
+/* the curved tech text */
+.orbit__ring text{
+    fill:var(--navy);
+    font-family:var(--font-body);
     font-weight:500;
-    font-size:clamp(1.3rem, 2.6vw, 1.9rem);
-    color:var(--navy);
     letter-spacing:.02em;
-    white-space:nowrap;
 }
 
-@keyframes skills-scroll{
-    from{ transform:translateY(0); }
-    to  { transform:translateY(-50%); }   /* half = one full set */
+.orbit__ring--outer text{ font-size:26px; }
+.orbit__ring--mid   text{ font-size:23px; }
+.orbit__ring--inner text{ font-size:20px; }
+
+/* each ring rotates about the SVG centre (300,300) */
+.orbit__ring{
+    transform-box:view-box;
+    transform-origin:300px 300px;
+    animation:orbit-spin linear infinite;
+    will-change:transform;
 }
 
-.skills-marquee:hover .skills-marquee__track{
+.orbit__ring--outer{ animation-duration:46s; }
+.orbit__ring--mid  { animation-duration:34s; animation-direction:reverse; }
+.orbit__ring--inner{ animation-duration:24s; }
+
+/* pause the whole orbit on hover */
+.skills-orbit:hover .orbit__ring{
     animation-play-state:paused;
+}
+
+@keyframes orbit-spin{
+    to{ transform:rotate(360deg); }
 }
 
 
@@ -87,35 +103,17 @@
 
     .skills-grid{
         grid-template-columns:1fr;
+        justify-items:center;
+        gap:48px;
     }
 
-    .skills-marquee{
-        height:auto;
-        overflow:visible;
-        -webkit-mask-image:none;
-                mask-image:none;
-    }
-
-    /* on small screens show a static, wrapping tag cloud */
-    .skills-marquee__track{
-        flex-direction:row;
-        flex-wrap:wrap;
-        align-items:center;
-        justify-content:flex-start;
-        text-align:left;
-        gap:.6em 1.1em;
-        animation:none;
-        transform:none;
-    }
-
-    /* the duplicate set is only needed for the loop */
-    .skills-marquee__track span:nth-child(n+16){
-        display:none;
+    .skills-orbit{
+        max-width:300px;
     }
 }
 
 @media (prefers-reduced-motion:reduce){
-    .skills-marquee__track{
+    .orbit__ring{
         animation:none;
     }
 }
