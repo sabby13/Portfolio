@@ -47,8 +47,9 @@
     font-size:clamp(5.5rem, 13vw, 9.5rem);
     text-transform:none;           /* keep the elegant capital */
     line-height:1;
-    /* nudge the script cap so it kisses the pixel word */
-    margin-right:clamp(-.28em, -3vw, -.16em);
+    /* small gap so the script cap sits beside the pixel word
+       without the two overlapping */
+    margin-right:clamp(.08em, 1.5vw, .22em);
     transform:translateY(.02em);
     text-shadow:0 6px 18px rgba(22,37,92,.14);
 }
