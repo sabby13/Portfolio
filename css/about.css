@@ -57,6 +57,27 @@
     font-weight:700;
     color:var(--ink);
     margin-bottom:1rem;
+    min-height:1.2em;          /* reserve the line so copy doesn't jump */
+}
+
+/* typewriter caret */
+.tw-caret{
+    display:inline-block;
+    width:.09em;
+    height:1em;
+    margin-left:.06em;
+    background:currentColor;
+    vertical-align:-.12em;
+    animation:tw-blink 1s steps(1) infinite;
+}
+
+/* steady caret once typing finishes, then it keeps blinking */
+@keyframes tw-blink{
+    50%{ opacity:0; }
+}
+
+@media (prefers-reduced-motion:reduce){
+    .tw-caret{ display:none; }
 }
 
 .about-copy p{

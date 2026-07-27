@@ -29,6 +29,16 @@
     flex:none;
 }
 
+/* open-profile arrow to the right of each card */
+.social__go{
+    flex:none;
+    align-self:center;
+    font-size:clamp(1.7rem, 3.4vw, 2.4rem);
+    line-height:1;
+    color:var(--navy);
+    text-decoration:none;
+}
+
 /* embed card */
 .social__card{
     flex:1;
