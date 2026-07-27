@@ -1,0 +1,31 @@
+/* =====================================================
+   RESEARCH
+   Two quiet entries: title, italic navy line, status.
+   ===================================================== */
+
+.research{
+    display:flex;
+    flex-direction:column;
+    gap:clamp(44px, 7vw, 72px);
+}
+
+.research__title{
+    font-size:clamp(1.35rem, 2.6vw, 1.8rem);
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:.4rem;
+}
+
+.research__desc{
+    font-size:clamp(1.1rem, 2.2vw, 1.45rem);
+    margin-bottom:.3rem;
+}
+
+.research__status{
+    font-size:clamp(1rem, 2vw, 1.2rem);
+    color:var(--ink);
+}
+
+.research__status .arrow-link:hover{
+    color:var(--navy);
+}

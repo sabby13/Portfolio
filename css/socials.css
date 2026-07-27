@@ -1,0 +1,79 @@
+/* =====================================================
+   SOCIALS
+   Each platform sits beside a rotated vertical label,
+   with a drop-in slot for the real embed.
+   ===================================================== */
+
+.socials{
+    display:flex;
+    flex-direction:column;
+    gap:clamp(56px, 9vw, 96px);
+    align-items:center;
+}
+
+.social{
+    display:flex;
+    align-items:center;
+    gap:clamp(18px, 3vw, 40px);
+    width:min(560px, 100%);
+}
+
+/* rotated platform label */
+.social__label{
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    font-size:clamp(1.4rem, 3vw, 2rem);
+    color:var(--ink);
+    letter-spacing:.02em;
+    white-space:nowrap;
+    flex:none;
+}
+
+/* embed card */
+.social__card{
+    flex:1;
+    display:block;
+    text-decoration:none;
+    border:3px solid var(--navy);
+    border-radius:6px;
+    overflow:hidden;
+    aspect-ratio:4 / 5;
+    background:var(--paper-shade);
+    transition:transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+
+.social__card--wide{
+    aspect-ratio:16 / 9;
+}
+
+.social__card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 22px 44px rgba(22,37,92,.2);
+}
+
+.social__slot{
+    width:100%;
+    height:100%;
+}
+
+/* when a real embed (iframe/blockquote) is pasted in,
+   let it fill the card and hide the placeholder */
+.social__card :is(iframe, blockquote, img, video){
+    width:100%;
+    height:100%;
+    border:0;
+    display:block;
+}
+.social__card:has(iframe, blockquote, img, video) .social__slot{
+    display:none;
+}
+
+
+@media (max-width:520px){
+    .social__card{
+        aspect-ratio:1 / 1;
+    }
+    .social__card--wide{
+        aspect-ratio:16 / 10;
+    }
+}

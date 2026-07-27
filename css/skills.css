@@ -1,0 +1,121 @@
+/* =====================================================
+   SKILLS
+   Left column: named capability groups.
+   Right column: a slow, seamless tech marquee — the
+   "this will rotate" motion from the design, made calm.
+   ===================================================== */
+
+.skills-grid{
+    display:grid;
+    grid-template-columns:1fr minmax(180px, 260px);
+    align-items:start;
+    gap:clamp(32px, 6vw, 80px);
+}
+
+
+/* ---- capability groups ---- */
+
+.skills-list{
+    display:flex;
+    flex-direction:column;
+    gap:clamp(36px, 5vw, 56px);
+}
+
+.skill-group__name{
+    font-size:clamp(1.25rem, 2.4vw, 1.6rem);
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:.35rem;
+}
+
+.skill-group__desc{
+    font-size:clamp(1.05rem, 2.1vw, 1.35rem);
+    margin-bottom:.35rem;
+}
+
+.skill-group__stack{
+    font-size:clamp(1rem, 2vw, 1.25rem);
+    color:var(--ink);
+    font-weight:400;
+}
+
+
+/* ---- scrolling tech column ---- */
+
+.skills-marquee{
+    position:relative;
+    height:clamp(340px, 46vh, 460px);
+    overflow:hidden;
+    /* fade top & bottom so items dissolve in/out */
+    -webkit-mask-image:linear-gradient(
+        to bottom, transparent, #000 16%, #000 84%, transparent);
+            mask-image:linear-gradient(
+        to bottom, transparent, #000 16%, #000 84%, transparent);
+}
+
+.skills-marquee__track{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:1.1em;
+    text-align:right;
+    animation:skills-scroll 26s linear infinite;
+}
+
+.skills-marquee__track span{
+    font-family:var(--font-pixel);
+    font-weight:500;
+    font-size:clamp(1.3rem, 2.6vw, 1.9rem);
+    color:var(--navy);
+    letter-spacing:.02em;
+    white-space:nowrap;
+}
+
+@keyframes skills-scroll{
+    from{ transform:translateY(0); }
+    to  { transform:translateY(-50%); }   /* half = one full set */
+}
+
+.skills-marquee:hover .skills-marquee__track{
+    animation-play-state:paused;
+}
+
+
+/* ---- responsive ---- */
+
+@media (max-width:760px){
+
+    .skills-grid{
+        grid-template-columns:1fr;
+    }
+
+    .skills-marquee{
+        height:auto;
+        overflow:visible;
+        -webkit-mask-image:none;
+                mask-image:none;
+    }
+
+    /* on small screens show a static, wrapping tag cloud */
+    .skills-marquee__track{
+        flex-direction:row;
+        flex-wrap:wrap;
+        align-items:center;
+        justify-content:flex-start;
+        text-align:left;
+        gap:.6em 1.1em;
+        animation:none;
+        transform:none;
+    }
+
+    /* the duplicate set is only needed for the loop */
+    .skills-marquee__track span:nth-child(n+16){
+        display:none;
+    }
+}
+
+@media (prefers-reduced-motion:reduce){
+    .skills-marquee__track{
+        animation:none;
+    }
+}

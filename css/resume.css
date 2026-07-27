@@ -1,0 +1,71 @@
+/* =====================================================
+   RESUME
+   A quiet vertical timeline, closing on a navy pill CTA.
+   ===================================================== */
+
+.timeline{
+    list-style:none;
+    width:min(640px, 100%);
+    margin-inline:auto;
+    display:flex;
+    flex-direction:column;
+    gap:clamp(40px, 6vw, 64px);
+}
+
+.timeline__item{
+    padding-left:clamp(4px, 2vw, 12px);
+}
+
+.timeline__year{
+    font-size:clamp(1.3rem, 2.6vw, 1.7rem);
+    font-weight:500;
+    color:var(--navy);
+    line-height:1.4;
+}
+
+.timeline__org{
+    font-size:clamp(1.3rem, 2.6vw, 1.7rem);
+    font-weight:400;
+    color:var(--navy);
+    line-height:1.4;
+}
+
+.timeline__role{
+    font-size:clamp(1.3rem, 2.6vw, 1.7rem);
+    font-weight:400;
+    color:var(--navy);
+    line-height:1.4;
+}
+
+
+/* ---- CTA pill ---- */
+
+.resume-cta{
+    display:flex;
+    justify-content:center;
+    margin-top:clamp(48px, 8vw, 80px);
+}
+
+.pill{
+    display:inline-flex;
+    align-items:center;
+    gap:.5em;
+    padding:.85em 1.9em;
+    background:var(--navy);
+    color:var(--paper);
+    border-radius:999px;
+    font-weight:500;
+    font-size:clamp(.95rem, 2vw, 1.1rem);
+    text-decoration:none;
+    box-shadow:0 12px 26px rgba(22,37,92,.28);
+    transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+
+.pill:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 36px rgba(22,37,92,.34);
+}
+
+.pill .arrow{
+    color:var(--paper);
+}
