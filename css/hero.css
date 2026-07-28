@@ -170,6 +170,14 @@
     margin-bottom:15px;
 }
 
+/* on phones the card just says "Sahib" */
+@media (max-width:600px){
+
+    .hero-header h1 .name-rest{
+        display:none;
+    }
+}
+
 .subtitle{
 
     opacity:.8;
