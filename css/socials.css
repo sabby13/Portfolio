@@ -39,21 +39,26 @@
     text-decoration:none;
 }
 
-/* embed card */
+/* embed card — no outline, just the post itself */
 .social__card{
     flex:1;
     display:block;
     text-decoration:none;
-    border:3px solid var(--navy);
-    border-radius:6px;
+    border:0;
+    border-radius:10px;
     overflow:hidden;
     aspect-ratio:4 / 5;
-    background:var(--paper-shade);
+    background:transparent;
     transition:transform .35s var(--ease), box-shadow .35s var(--ease);
 }
 
 .social__card--wide{
     aspect-ratio:16 / 9;
+}
+
+/* give the YouTube row more room so its post is larger */
+.social:has(.social__card--wide){
+    width:min(820px, 100%);
 }
 
 .social__card:hover{
