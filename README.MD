@@ -1,15 +1,31 @@
-okay, we will handle the fonts later; i had initally designed like
+# ✦ sahib's little corner of the internet
 
-"
-About Me                     I 
-Projects                    II
-"
+my personal portfolio — cream paper, deep navy ink, script + pixel type,
+and two monarch butterflies that refuse to sit still. 🦋
 
-Where when we hover over it shows like
-"
-About Me.......................I 
+built by hand with plain **HTML / CSS / JS** (plus a dash of **Three.js**
+for the butterflies) — no framework, no build step, just files.
 
-"
+## peek inside
+- **hero** — a glass card floating over a living sky, butterflies drifting past
+- **about · projects · resume · skills · socials · research · let's connect**
+- little touches: a glowing torn-paper seam, revolving skill rings,
+  a typewriter intro, and scroll-reveals throughout
 
-where this about me is left aligned and these Roman Numerals are aligned on the right side 
-and when we hover over "About Me" it becomes underlined(basicallt a new page link, so it becomes easy for me to design the rest of the pages)the dots travel ....... like this to the number assigned and the number gets bold
+## run it
+3D models need to be *served*, not double-clicked, so:
+
+```bash
+python -m http.server 8000
+# then open http://localhost:8000
+```
+
+(or right-click `index.html` → *Open with Live Server*)
+
+## say hi
+- 🌐 github.com/sabby13
+- 💼 linkedin.com/in/sahibsingh1313
+- 📮 sahibpsingh13@gmail.com
+
+---
+*made with a lot of ☕ and slightly too much fiddling with butterfly angles.*
