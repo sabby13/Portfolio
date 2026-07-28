@@ -19,11 +19,10 @@
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const CONFIG = {
-        count:      reduce ? 1 : 3,   // how many butterflies
-        scale:      0.9,              // base size (× per-flyer variation)
-        baseRotX:  -0.25,            // model tilt so we see the wings nicely
-        depth:      150,             // how far they travel toward / past the card
-        speed:      0.55             // overall wander speed
+        count:     2,                // two butterflies, one low one high
+        scale:     1.08,             // base size (~1.5× the previous)
+        baseRotX:  1.35,             // pitch so the dorsal wings face us
+        baseRotZ:  Math.PI           // 180° in-plane flip so the head points up
     };
 
     /* ---- renderer / scene ---- */
@@ -58,36 +57,44 @@
     const flyers = [];
     const rand = (a, b) => a + Math.random() * (b - a);
 
-    function makeFlyer(obj, mixer) {
+    // hover distance around the anchor (world units) — small, so they
+    // never leave their spot
+    const HOVER_X = 26, HOVER_Y = 18, HOVER_Z = 16;
+
+    // fractional anchor per lane, kept screen-relative so it survives resize.
+    // band -1 => lower-left, band +1 => upper-right (matches the composition)
+    function makeFlyer(obj, mixer, band) {
         return {
-            obj, mixer,
-            t:   rand(0, 100),
-            // independent frequencies/phases so no two share a path
-            ax:  rand(0.85, 1.05), px: rand(0, 6.28),
-            ay:  rand(0.30, 0.42), py: rand(0, 6.28),
-            az:  rand(0.22, 0.34), pz: rand(0, 6.28),
-            spanX: rand(0.72, 1.02),
-            spanY: rand(0.28, 0.42),
-            prev: new THREE.Vector3()
+            obj, mixer, band,
+            fx: band < 0 ? -0.70 :  0.70,     // fraction of halfW
+            fy: band < 0 ? -0.42 :  0.46,     // fraction of halfH
+            // independent hover phases/speeds so the two feel alive, not synced
+            hxF: rand(0.28, 0.42), hxP: rand(0, 6.28),
+            hyF: rand(0.34, 0.5),  hyP: rand(0, 6.28),
+            hzF: rand(0.16, 0.26), hzP: rand(0, 6.28),
+            t:   rand(0, 100)
         };
     }
 
     function place(f, dt) {
-        f.t += dt * CONFIG.speed;
-        const x = Math.sin(f.t * f.ax + f.px) * halfW * f.spanX
-                + Math.sin(f.t * 1.9) * 14;
-        const y = Math.sin(f.t * f.ay + f.py) * halfH * f.spanY
-                + Math.cos(f.t * 1.3) * 12;
-        const z = Math.sin(f.t * f.az + f.pz) * CONFIG.depth;
+        f.t += dt;
+
+        // anchor recomputed each frame from current viewport → stays put on resize
+        const ax = f.fx * halfW;
+        const ay = f.fy * halfH;
+
+        // small hover around the anchor
+        const x = ax + Math.sin(f.t * f.hxF + f.hxP) * HOVER_X;
+        const y = ay + Math.sin(f.t * f.hyF + f.hyP) * HOVER_Y;
+        const z =      Math.sin(f.t * f.hzF + f.hzP) * HOVER_Z;
 
         const o = f.obj;
-        // banking + heading from horizontal velocity
-        const vx = x - f.prev.x;
         o.position.set(x, y, z);
-        o.rotation.x = CONFIG.baseRotX + Math.sin(f.t * 0.8) * 0.12;
-        o.rotation.y = Math.sin(f.t * f.ax + f.px) * 0.5;   // turn as it sweeps
-        o.rotation.z = -vx * 0.06;                          // bank into the turn
-        f.prev.set(x, y, z);
+
+        // in-plane flip (head up) + light flutter; dorsal pitch is on the model
+        o.rotation.x = Math.sin(f.t * 0.9) * 0.07;
+        o.rotation.y = Math.sin(f.t * 0.6 + f.hxP) * 0.08;
+        o.rotation.z = CONFIG.baseRotZ + Math.sin(f.t * 1.1 + f.hyP) * 0.08;
     }
 
     const loader = new THREE.GLTFLoader();
@@ -96,6 +103,20 @@
         (gltf) => {
             const src   = gltf.scene;
             const clips = gltf.animations || [];
+
+            // enable the wing-texture transparency so no dark plane shows
+            // behind the butterfly (materials are shared with the clones)
+            src.traverse((o) => {
+                if (!o.isMesh || !o.material) return;
+                const mats = Array.isArray(o.material) ? o.material : [o.material];
+                mats.forEach((m) => {
+                    m.transparent = true;
+                    m.alphaTest   = 0.35;   // clean cutout of the wing shape
+                    m.side        = THREE.DoubleSide;
+                    m.depthWrite  = true;
+                    m.needsUpdate = true;
+                });
+            });
 
             for (let i = 0; i < CONFIG.count; i++) {
                 const model = THREE.SkeletonUtils
@@ -108,10 +129,13 @@
                 const c = box.getCenter(new THREE.Vector3());
                 model.position.sub(c);
 
+                // fixed pitch on the model so the dorsal wings face the camera
+                model.rotation.x = CONFIG.baseRotX;
+
                 // pivot carries scale + flight transform; model sits centred inside
                 const pivot = new THREE.Group();
                 pivot.add(model);
-                pivot.scale.setScalar(CONFIG.scale * rand(0.75, 1.2));
+                pivot.scale.setScalar(CONFIG.scale);
                 scene.add(pivot);
 
                 const mixer = new THREE.AnimationMixer(model);
@@ -120,7 +144,8 @@
                     act.timeScale = rand(0.8, 1.35);
                     act.play();
                 }
-                flyers.push(makeFlyer(pivot, mixer));
+                // alternate lanes: first low (-1), second high (+1)
+                flyers.push(makeFlyer(pivot, mixer, i === 0 ? -1 : 1));
             }
 
             // warm up placement so nothing pops in at the origin
