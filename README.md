@@ -1,6 +1,8 @@
+```text
   _________________________________________________
  /                                                 \
-| i wanted to make the coolest portfolio ever:sorry |
+
+| i wanted to make the coolest portfolio ever,sorry |
 | to disappoint you i give up                       |
  \                                                 /
   =================================================
@@ -30,6 +32,7 @@
                                                                 &************************************&
                                                                       &*******************************&
                                                                         &*****************************&
+```
 
 
 
