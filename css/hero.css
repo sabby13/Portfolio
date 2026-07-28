@@ -129,25 +129,6 @@
     z-index:1;
 }
 
-/* refraction — a light band sweeping diagonally through the glass */
-.hero-card::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    z-index:0;
-    border-radius:inherit;
-    pointer-events:none;
-    mix-blend-mode:screen;
-    background:linear-gradient(115deg,
-        transparent 32%,
-        rgba(255,255,255,.10) 44%,
-        rgba(255,255,255,.30) 50%,
-        rgba(255,255,255,.10) 56%,
-        transparent 68%);
-    background-size:250% 100%;
-    animation:card-refract 7.5s linear infinite;
-}
-
 /* slow caustic — soft light pooling and drifting under the surface */
 .hero-card::after{
     content:"";
@@ -163,18 +144,12 @@
     animation:card-caustic 13s ease-in-out infinite alternate;
 }
 
-@keyframes card-refract{
-    0%   { background-position:180% 0; }
-    100% { background-position:-80% 0; }
-}
-
 @keyframes card-caustic{
     0%   { transform:translate(-4%,-3%) rotate(0deg); }
     100% { transform:translate(4%, 3%) rotate(6deg); }
 }
 
 @media (prefers-reduced-motion:reduce){
-    .hero-card::before,
     .hero-card::after{ animation:none; }
 }
 
