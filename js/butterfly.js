@@ -57,17 +57,19 @@
     const flyers = [];
     const rand = (a, b) => a + Math.random() * (b - a);
 
-    // hover distance around the anchor (world units) — small, so they
-    // never leave their spot
-    const HOVER_X = 26, HOVER_Y = 18, HOVER_Z = 16;
-
     // fractional anchor per lane, kept screen-relative so it survives resize.
     // band -1 => lower-left, band +1 => upper-right (matches the composition)
     function makeFlyer(obj, mixer, band) {
+        const calm = band > 0;            // top-right stays nearly still
         return {
             obj, mixer, band,
-            fx: band < 0 ? -0.70 :  0.70,     // fraction of halfW
-            fy: band < 0 ? -0.42 :  0.46,     // fraction of halfH
+            fx: band < 0 ? -0.70 :  0.58,     // fraction of halfW
+            fy: band < 0 ? -0.42 :  0.38,     // fraction of halfH
+            face: band < 0 ? 0 : THREE.MathUtils.degToRad(70), // top-right head tilts ~70° left
+            // hover distance around the anchor (world units)
+            hx: calm ? 7 : 26,
+            hy: calm ? 5 : 18,
+            hz: calm ? 5 : 16,
             // independent hover phases/speeds so the two feel alive, not synced
             hxF: rand(0.28, 0.42), hxP: rand(0, 6.28),
             hyF: rand(0.34, 0.5),  hyP: rand(0, 6.28),
@@ -84,9 +86,9 @@
         const ay = f.fy * halfH;
 
         // small hover around the anchor
-        const x = ax + Math.sin(f.t * f.hxF + f.hxP) * HOVER_X;
-        const y = ay + Math.sin(f.t * f.hyF + f.hyP) * HOVER_Y;
-        const z =      Math.sin(f.t * f.hzF + f.hzP) * HOVER_Z;
+        const x = ax + Math.sin(f.t * f.hxF + f.hxP) * f.hx;
+        const y = ay + Math.sin(f.t * f.hyF + f.hyP) * f.hy;
+        const z =      Math.sin(f.t * f.hzF + f.hzP) * f.hz;
 
         const o = f.obj;
         o.position.set(x, y, z);
@@ -94,7 +96,7 @@
         // in-plane flip (head up) + light flutter; dorsal pitch is on the model
         o.rotation.x = Math.sin(f.t * 0.9) * 0.07;
         o.rotation.y = Math.sin(f.t * 0.6 + f.hxP) * 0.08;
-        o.rotation.z = CONFIG.baseRotZ + Math.sin(f.t * 1.1 + f.hyP) * 0.08;
+        o.rotation.z = CONFIG.baseRotZ + f.face + Math.sin(f.t * 1.1 + f.hyP) * 0.08;
     }
 
     const loader = new THREE.GLTFLoader();
@@ -140,8 +142,10 @@
 
                 const mixer = new THREE.AnimationMixer(model);
                 if (clips.length) {
-                    const act = mixer.clipAction(clips[i % clips.length]);
-                    act.timeScale = rand(0.8, 1.35);
+                    // use the same in-place flap clip for both so neither drifts
+                    // toward the camera (other clips carry forward root motion)
+                    const act = mixer.clipAction(clips[0]);
+                    act.timeScale = rand(0.85, 1.15);
                     act.play();
                 }
                 // alternate lanes: first low (-1), second high (+1)
