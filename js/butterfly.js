@@ -65,7 +65,8 @@
             obj, mixer, band,
             fx: band < 0 ? -0.70 :  0.58,     // fraction of halfW
             fy: band < 0 ? -0.42 :  0.38,     // fraction of halfH
-            face: band < 0 ? 0 : THREE.MathUtils.degToRad(70), // top-right head tilts ~70° left
+            // top-right head tilts ~70° left; bottom-left ~45° right
+            face: band < 0 ? THREE.MathUtils.degToRad(-45) : THREE.MathUtils.degToRad(70),
             // hover distance around the anchor (world units)
             hx: calm ? 7 : 26,
             hy: calm ? 5 : 18,
