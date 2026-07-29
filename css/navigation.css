@@ -14,7 +14,7 @@
 
     align-items:center;
 
-    color:white;
+    color:var(--navy);
 
     text-decoration:none;
 
@@ -41,7 +41,7 @@
 
     height:1px;
 
-    background:white;
+    background:var(--navy);
 
     transition:.35s;
 }
@@ -58,8 +58,8 @@
     background-image:
     repeating-linear-gradient(
         to right,
-        white 0px,
-        white 2px,
+        var(--navy) 0px,
+        var(--navy) 2px,
         transparent 2px,
         transparent 8px
     );

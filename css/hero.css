@@ -96,7 +96,7 @@
 
     padding:40px;
 
-    color:white;
+    color:var(--navy);
 
     overflow:hidden;                 /* clip the light sweep to the card */
     isolation:isolate;               /* contain the blend modes            */
