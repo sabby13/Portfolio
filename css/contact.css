@@ -87,3 +87,17 @@
     opacity:.5;
     margin:0 .15em;
 }
+
+/* cute little stamp under the credit */
+.site-footer__stamp{
+    display:block;
+    width:clamp(84px, 12vw, 130px);
+    height:auto;
+    margin:18px auto 0;
+    opacity:.9;
+    transition:transform .4s var(--ease);
+}
+
+.site-footer__stamp:hover{
+    transform:rotate(-4deg) scale(1.04);
+}
