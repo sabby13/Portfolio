@@ -3,7 +3,7 @@
  /                                                 \
 
 | i wanted to make the coolest portfolio ever,sorry |
-| to disappoint you i give up                       |
+| to disappoint you but i give up                   |
  \                                                 /
   =================================================
                                                  \
@@ -38,24 +38,13 @@
 
 
 
-# anyway heres a small desc of my personal portfolio    
+# anyway heres a small info of my personal portfolio    
 FLAVOUR:
 cream paper, deep navy ink, script + pixel type,
 and two monarch butterflies that refuse to sit still. 🦋
 
 built by hand with plain **HTML / CSS / JS** (plus a dash of **Three.js**
 for the butterflies); no framework, no build step, just files.
-
-
-## run it
-3D models need to be *served*, not double-clicked, so:
-
-```bash
-python -m http.server 8000
-# then open http://localhost:8000
-```
-
-(or right-click `index.html` → *Open with Live Server*)
 
 
 *made with a lot of ☕ and slightly too much fiddling with butterfly angles.*
