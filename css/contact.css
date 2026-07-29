@@ -91,7 +91,7 @@
 /* cute little stamp under the credit */
 .site-footer__stamp{
     display:block;
-    width:clamp(84px, 12vw, 130px);
+    width:clamp(126px, 18vw, 195px);
     height:auto;
     margin:18px auto 0;
     opacity:.9;
