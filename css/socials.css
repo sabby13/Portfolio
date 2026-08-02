@@ -105,13 +105,22 @@
     height:66px;
     display:grid;
     place-items:center;
-    font-size:40px;
-    color:#fff;
     background:rgba(0,0,0,.42);
     border-radius:50%;
     -webkit-backdrop-filter:blur(2px);
     backdrop-filter:blur(2px);
     transition:transform .3s var(--ease), background .3s var(--ease);
+}
+
+/* centred white play triangle (+2px optical nudge) */
+.social__play::before{
+    content:"";
+    width:0;
+    height:0;
+    border-style:solid;
+    border-width:11px 0 11px 18px;
+    border-color:transparent transparent transparent #fff;
+    transform:translateX(2px);
 }
 .social__cover:hover .social__play{
     transform:scale(1.08);
